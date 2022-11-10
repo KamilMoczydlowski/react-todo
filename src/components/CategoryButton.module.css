@@ -1,0 +1,32 @@
+.button {
+	display: flex;
+	align-items: center;
+	margin: 0.6rem;
+	padding: 0;
+	height: 4rem;
+	width: 45%;
+	max-width: 15rem;
+	color: white;
+	background-color: rgba(255, 255, 255, 0.3);
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.active {
+	color: black;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.square {
+	margin: 0 1.5rem;
+	height: 10px;
+	width: 10px;
+}
+
+@media (min-width: 1200px) {
+	.button:hover {
+		color: black;
+		background-color: rgba(255, 255, 255, 1);
+	}
+}

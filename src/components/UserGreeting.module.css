@@ -1,0 +1,44 @@
+.greetingsTitle {
+	font-size: 2rem;
+}
+
+.greetingsBox {
+	display: flex;
+}
+
+.countHighlight {
+	color: blue;
+}
+
+.iconBox {
+	display: flex;
+	justify-content: center;
+}
+
+.iconButton {
+	margin: 0;
+	padding: 0;
+	background: none;
+	border: none;
+}
+
+.squareBox {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+}
+
+.tilesIcon {
+	font-size: 0.9rem;
+}
+
+.icon {
+	height: 2rem;
+	width: 2rem;
+	opacity: 0.3;
+	overflow: hidden;
+}
+
+.iconActive {
+	opacity: 1;
+}
