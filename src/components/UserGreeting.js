@@ -12,7 +12,7 @@ const UserGreeting = props => {
 			<SearchBar />
 			<h2 className={styles.greetingsTitle}>Hello {props.user}</h2>
 			<div className={styles.greetingsBox}>
-				<p>
+				<p className={styles.greetingsText}>
 					<span className={styles.countHighlight}>{props.taskCount} tasks</span>{' '}
 					are waiting to complete!
 				</p>
@@ -28,19 +28,19 @@ const UserGreeting = props => {
 									: `${styles.squareBox} ${styles.icon}`
 							}>
 							<FontAwesomeIcon
-								icon={fas('square')}
+								icon={fas('square-full')}
 								className={styles.tilesIcon}
 							/>
 							<FontAwesomeIcon
-								icon={fas('square')}
+								icon={fas('square-full')}
 								className={styles.tilesIcon}
 							/>
 							<FontAwesomeIcon
-								icon={fas('square')}
+								icon={fas('square-full')}
 								className={styles.tilesIcon}
 							/>
 							<FontAwesomeIcon
-								icon={fas('square')}
+								icon={fas('square-full')}
 								className={styles.tilesIcon}
 							/>
 						</div>
@@ -50,7 +50,7 @@ const UserGreeting = props => {
 						className={styles.iconButton}
 						onClick={props.activateIconHandler}>
 						<FontAwesomeIcon
-							icon={fas('square')}
+							icon={fas('square-full')}
 							className={
 								props.activeIcon === 'squareButton'
 									? `${styles.icon} ${styles.iconActive}`

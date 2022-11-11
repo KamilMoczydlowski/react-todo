@@ -76,7 +76,6 @@ const AddNewTask = props => {
 
 	return (
 		<div className={styles.background}>
-			<Wrapper>
 				<TakeMeHomeButton />
 				<div className={styles.containerTop}>
 					<h2 className={styles.title}>Add new task</h2>
@@ -96,7 +95,6 @@ const AddNewTask = props => {
 						+ ADD TASK
 					</button>
 				</div>
-			</Wrapper>
 		</div>
 	);
 };

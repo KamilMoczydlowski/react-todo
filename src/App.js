@@ -7,8 +7,8 @@ import TaskProvider from './store/TaskProvider';
 function App() {
 	return (
 		<TaskProvider>
-			<Main />
-			{/* <AddNewTask /> */}
+				<Main />
+				{/* <AddNewTask /> */}
 		</TaskProvider>
 	);
 }
