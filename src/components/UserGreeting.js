@@ -12,10 +12,18 @@ const UserGreeting = props => {
 			<SearchBar />
 			<h2 className={styles.greetingsTitle}>Hello {props.user}</h2>
 			<div className={styles.greetingsBox}>
-				<p className={styles.greetingsText}>
+				{props.taskCount > 1 && <p className={styles.greetingsText}>
 					<span className={styles.countHighlight}>{props.taskCount} tasks</span>{' '}
 					are waiting to complete!
-				</p>
+				</p>}
+				{props.taskCount === 1 && <p className={styles.greetingsText}>
+					<span className={styles.countHighlight}>{props.taskCount} task</span>{' '}
+					is waiting to complete!
+				</p>}
+				{props.taskCount === 0 && <p className={styles.greetingsText}>
+					<span className={styles.countHighlight}>All tasks</span>{' '}
+					are completed!
+				</p>}
 				<div className={styles.iconBox}>
 					<button
 						id='tilesButton'

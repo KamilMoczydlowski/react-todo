@@ -6,12 +6,17 @@
     margin: 0.5rem;
 	width: 140px;
 	height: 140px;
+    text-decoration: none;
     color: white;
+    border: none;
+    box-shadow: 2px 2px 5px gray;
+    cursor: pointer;
 }
 
-/* .titleBox {
-    
-} */
+.titleBox {
+    text-align: left;
+    width: 100%;
+}
 
 .emoji {
     font-size: 2.2rem;
@@ -27,6 +32,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .counter {

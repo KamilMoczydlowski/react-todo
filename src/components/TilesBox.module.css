@@ -1,0 +1,20 @@
+.tilesBox {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 1rem;
+}
+
+.addTaskLink {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0.5rem;
+	width: 140px;
+	height: 140px;
+	font-size: 3rem;
+	color: white;
+	background-color: #fe531d;
+	border: none;
+	cursor: pointer;
+}

@@ -6,6 +6,8 @@
 	height: 4rem;
 	width: 45%;
 	max-width: 15rem;
+	min-width: 13rem;
+	font-family: 'Montserrat', sans-serif;
 	color: white;
 	background-color: rgba(255, 255, 255, 0.3);
 	border: none;

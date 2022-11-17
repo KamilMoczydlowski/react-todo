@@ -1,0 +1,10 @@
+.goBackLink {
+	display: inline-block;
+	padding: 2rem;
+    font-size: 1.5rem;
+	color: white;
+	background: none;
+    text-decoration: none;
+	border: none;
+	cursor: pointer;
+}

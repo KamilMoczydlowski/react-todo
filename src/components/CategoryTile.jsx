@@ -1,18 +1,35 @@
+import { Link, useNavigate } from 'react-router-dom';
+
 import styles from './CategoryTile.module.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fas } from 'fontawesome.macro';
-
 const CategoryTile = props => {
+	
+	const navigate = useNavigate();
+
+	const test = id => {
+		navigate('', {
+			state: {
+				id: '',
+			},
+		});
+	};
 	return (
-		<div className={styles.tile} style={{ backgroundColor: props.background }}>
+		<Link
+			to='/bigCard'
+			state={{ id: props.id }}
+			id={props.id}
+			className={styles.tile}
+			style={{ backgroundColor: props.background }}
+			onClick={test}>
 			<div className={styles.titleBox}>
-                <p className={styles.emoji}>{props.icon}</p>
-                <h4 className={styles.title}>{props.title}</h4>
-            </div>
+				<p className={styles.emoji}>{props.icon}</p>
+				<h4 className={styles.title}>{props.title}</h4>
+			</div>
 			<div className={styles.counterBox}>
 				<p
-					className={styles.counter}>{`${props.doneTasks} of ${props.allTasks}`}</p>
+					className={
+						styles.counter
+					}>{`${props.doneTasks} of ${props.allTasks}`}</p>
 				<div className={styles.circleBox}>
 					<svg
 						viewBox='0 0 100 100'
@@ -41,7 +58,7 @@ const CategoryTile = props => {
 					</svg>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 };
 
