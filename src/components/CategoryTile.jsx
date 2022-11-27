@@ -6,21 +6,23 @@ const CategoryTile = props => {
 	
 	const navigate = useNavigate();
 
-	const test = id => {
+	const navData = id => {
 		navigate('', {
 			state: {
 				id: '',
 			},
 		});
 	};
+
 	return (
 		<Link
-			to='/bigCard'
+			to={`/main/${props.id}`}
 			state={{ id: props.id }}
 			id={props.id}
 			className={styles.tile}
 			style={{ backgroundColor: props.background }}
-			onClick={test}>
+			onClick={navData}
+			>
 			<div className={styles.titleBox}>
 				<p className={styles.emoji}>{props.icon}</p>
 				<h4 className={styles.title}>{props.title}</h4>
@@ -32,9 +34,11 @@ const CategoryTile = props => {
 					}>{`${props.doneTasks} of ${props.allTasks}`}</p>
 				<div className={styles.circleBox}>
 					<svg
+					className={styles.svgCircle}
 						viewBox='0 0 100 100'
 						xmlns='http://www.w3.org/2000/svg'
-						transform='rotate(-90)'>
+						
+						>
 						<circle
 							className={styles.circleBackground}
 							cx='50'

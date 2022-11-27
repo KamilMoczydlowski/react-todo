@@ -1,97 +1,83 @@
-import styles from './CategoryCardBig.module.css';
+import { useContext, useEffect, useState } from 'react';
 
 import Wrapper from './Wrapper';
 
+import DeletePopup from './DeletePopup';
+import EditItemPopup from './EditItemPopup';
+
 import TakeMeHomeButton from './GoBackBtn';
+import BigCardHeader from './BigCardHeader';
 import ListItemBig from './ListItemBig';
-import TaskContext from '../store/task-context';
-import { useContext, useEffect, useState } from 'react';
+
+import TaskContext from '../store/data-context';
+
+import { RiDeleteBin6Line } from 'react-icons/ri';
+
+import styles from './CategoryCardBig.module.css';
 
 const CategoryCardBig = props => {
-	const [categories, setCategories] = useState([]);
 	const [categoryToShow, setCategoryToShow] = useState({});
 	const [tasksToRender, setTasksToRender] = useState([]);
+	const [showPopupDeleteItem, setShowPopupDeleteItem] = useState(false);
+	const [showPopupDeleteCategory, setShowPopupDeleteCategory] = useState(false);
+	const [showEditPopup, setShowEditPopup] = useState(false);
+	const [clickedTask, setClickedTask] = useState({});
+	const [taskToCompleteId, setTaskToCompleteId] = useState('');
 
 	const categoriesCtx = useContext(TaskContext);
 
 	useEffect(() => {
-		const loadedCategories = [];
-
-		for (const key in categoriesCtx.categories) {
-			loadedCategories.push({
-				key: key,
-				id: categoriesCtx.categories[key].id,
-				color: categoriesCtx.categories[key].color,
-				icon: categoriesCtx.categories[key].icon,
-				tasks: categoriesCtx.categories[key].tasks,
-				allTasks: categoriesCtx.categories[key].allTasks,
-				doneTasks: categoriesCtx.categories[key].tasksDone,
-			});
-		}
-
-		setCategories(loadedCategories);
-	}, [categoriesCtx]);
-
-	useEffect(() => {
-		categories.forEach(category => {
+		categoriesCtx.categories.forEach(category => {
 			if (props.clickedTile === category.id) {
 				setCategoryToShow(category);
 				setTasksToRender(category.tasks);
+			} else {
+				return null;
 			}
 		});
-	}, [categories, props.clickedTile]);
 
-	console.log(categoryToShow.tasks);
+		categoriesCtx.categories.forEach(category => {
+			category.tasks.forEach(task => {
+				if (task.id === taskToCompleteId) {
+					task.isDone = true;
+					setTaskToCompleteId('');
+				} else {
+					return null;
+				}
+			});
+		});
+	}, [categoriesCtx, props.clickedTile, taskToCompleteId]);
 
 	return (
 		<div
 			className={styles.background}
 			style={{ backgroundColor: categoryToShow.color }}>
 			<Wrapper>
-				<TakeMeHomeButton linkTo='/' />
-				<div className={styles.header}>
-					<div
-						className={
-							categoryToShow.doneTasks / categoryToShow.allTasks === 1
-								? `${styles.iconBox} ${styles.iconBoxFull}`
-								: styles.iconBox
-						}>
-						<svg
-							className={styles.circle}
-							viewBox='0 0 100 100'
-							xmlns='http://www.w3.org/2000/svg'
-							transform='rotate(-90)'>
-							<circle
-								cx='50'
-								cy='50'
-								r='45'
-								fill='none'
-								stroke='white'
-								strokeWidth='10'
-								pathLength='1'
-								strokeDasharray={`${
-									categoryToShow.doneTasks / categoryToShow.allTasks
-								} 1`}
-							/>
-						</svg>
-						<p className={styles.emoji}>{categoryToShow.icon}</p>
-					</div>
-					<div className={styles.titleBox}>
-						<h3 className={styles.title}>{categoryToShow.id}</h3>
-						<p
-							className={
-								styles.counter
-							}>{`${categoryToShow.doneTasks} of ${categoryToShow.allTasks} tasks`}</p>
-					</div>
+				<div className={styles.IconBox}>
+					<TakeMeHomeButton linkTo='/main' />
+					<button className={styles.trashBtn} onClick={e => setShowPopupDeleteCategory(true)}>
+						<RiDeleteBin6Line className={styles.trashIcon} />
+					</button>
 				</div>
+				<BigCardHeader
+					id={categoryToShow.id}
+					icon={categoryToShow.icon}
+					tasksDone={categoryToShow.tasksDone}
+					allTasks={categoryToShow.allTasks}
+				/>
 				<div id='itemBoxUndone' className={styles.itemBox}>
 					{tasksToRender.map(task => {
 						if (!task.isDone) {
 							return (
 								<ListItemBig
+									key={task.id}
 									id={task.id}
 									isDone={task.isDone}
-									text={task.text}
+									setTaskToCompleteId={setTaskToCompleteId}
+									setModalDeleteItem={setShowPopupDeleteItem}
+									setEditPopup={setShowEditPopup}
+									setClickedTask={setClickedTask}
+									clickedTask={clickedTask}
 								/>
 							);
 						}
@@ -103,9 +89,12 @@ const CategoryCardBig = props => {
 						if (task.isDone) {
 							return (
 								<ListItemBig
+									key={task.id}
 									id={task.id}
 									isDone={task.isDone}
-									text={task.text}
+									setModalDeleteItem={setShowPopupDeleteItem}
+									setClickedTask={setClickedTask}
+									clickedTask={clickedTask}
 								/>
 							);
 						}
@@ -113,6 +102,29 @@ const CategoryCardBig = props => {
 					})}
 				</div>
 			</Wrapper>
+			{showPopupDeleteItem && (
+				<DeletePopup
+					keyWord='task'
+					showPopup={setShowPopupDeleteItem}
+					activeElement={clickedTask}
+					setActiveElement={setClickedTask}
+				/>
+			)}
+			{showPopupDeleteCategory && (
+				<DeletePopup
+					keyWord='category'
+					showPopup={setShowPopupDeleteCategory}
+					activeElement={categoryToShow}
+					setActiveElement={() => {}}
+				/>
+			)}
+			{showEditPopup && (
+				<EditItemPopup
+					showPopup={setShowEditPopup}
+					clickedTask={clickedTask}
+					setClickedTask={setClickedTask}
+				/>
+			)}
 		</div>
 	);
 };

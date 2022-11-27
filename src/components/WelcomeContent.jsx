@@ -1,5 +1,24 @@
-const WelcomeContent = () => {
-    return (<div><p>Welcome</p></div>)
-}
+import Wrapper from './Wrapper';
+import AuthBox from './AuthBox';
 
-export default WelcomeContent
+import styles from './WelcomeContent.module.css';
+
+const WelcomeContent = () => {
+	
+
+	return (
+		<div className={styles.bg}>
+			<Wrapper>
+				<div className={styles.container}>
+					<div className={styles.header}>
+						<h2 className={styles.welcome}>Welcome to </h2>
+						<h1 className={styles.title}>React Todo App</h1>
+					</div>
+					<AuthBox />
+				</div>
+			</Wrapper>
+		</div>
+	);
+};
+
+export default WelcomeContent;

@@ -4,41 +4,84 @@
 	position: relative;
 	margin: 1rem auto;
 	height: 4rem;
-    width: 100%;
-    overflow: hidden;
+	width: 100%;
 }
 
+.inputBox {
+	display: flex;
+	justify-content: flex-end;
+	position: relative;
+	width: calc(100% - 4rem);
+	overflow: hidden;
+}
+
+.input[type="search"] {
+	-webkit-appearance: none;
+  }
+
 .input {
-    position: absolute;
-    right: -120%;
-	padding: 1rem;
-    width: 80%;
-    max-width: 500px;
-    opacity: 0;
-    transition: right .3s, opacity .3s;
+	position: absolute;
+	right: -120%;
+	padding: 0 1rem;
+	height: 4rem;
+	width: calc(100% - 4rem);
+	max-width: 500px;
+	border-radius: 0%;
+	opacity: 0;
+	transition: right 0.3s, opacity 0.3s, border-top 0.3s, border-bottom 0.3s,
+		border-left 0.3s;
 }
 
 .inputActive {
-    right: 4rem;
-    opacity: 1;
+	right: 4rem;
+	opacity: 1;
+	border-top: 2px solid black;
+	border-right: none;
+	border-bottom: 2px solid black;
+	border-left: 2px solid black;
 }
 
 .iconBox {
-    height: 4rem;
-    width: 4rem;
-    background-color: #fff;
-    z-index: 1;
-    cursor: pointer;
+	height: 4rem;
+	width: 4rem;
+	background-color: #fff;
+	z-index: 1;
+	cursor: pointer;
 }
 
 .icon {
-    padding: 1rem;
-	height: 2rem;
-	width: 2rem;
-    opacity: .3;
-    transition: opacity .3s;
+	padding: .8rem;
+	height: 100%;
+	width: 100%;
+	color: black;
+	opacity: 0.3;
+	transition: opacity 0.3s, transform .5s;
 }
 
-.iconActive {
-    opacity: 1;
+.glassActive {
+	opacity: 1;
+	border-top: 2px solid black;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	z-index: 2;
+}
+
+.gearActive {
+	opacity: 1;
+	transform: rotate(1080deg);
+}
+
+.itemsList {
+	display: block;
+	position: absolute;
+	top: 4rem;
+	right: 4rem;
+	padding: 0 1rem;
+	width: calc(100% - 4rem);
+	max-width: 500px;
+	max-height: 500px;
+	font-size: 1.3rem;
+	background-color: #ddd;
+	overflow: scroll;
+	z-index: 1;
 }

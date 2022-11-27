@@ -1,0 +1,20 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+	width: 4rem;
+    background-color: rgba(255, 255, 255, .2);
+    border: none;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.btnActive {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.colorTile {
+    height: 2rem;
+    width: 2rem;
+}

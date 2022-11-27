@@ -1,0 +1,14 @@
+/* .bg {
+	background-color: #fe531d;
+} */
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header {
+	margin: 1rem 0;
+	font-size: 2.6rem;
+}

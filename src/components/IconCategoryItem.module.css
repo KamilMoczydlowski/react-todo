@@ -1,0 +1,19 @@
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 4rem;
+	width: 4rem;
+	background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+	cursor: pointer;
+	transition: background-color .3s;
+}
+
+.btnActive {
+	background-color: rgba(255, 255, 255, 01);
+}
+
+.icon {
+	font-size: 2rem;
+}

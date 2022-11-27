@@ -1,83 +1,73 @@
-// import { useContext } from 'react';
+import { useContext } from 'react';
+
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 import CategoryCardSmall from './CategoryCardSmall';
+import AddNewTaskBtn from './AddNewTaskBtn';
 
-// import TaskContext from '../store/task-context';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fas } from 'fontawesome.macro';
+import DataContext from '../store/data-context';
 
 import styles from './SmallCardBox.module.css';
 
-const SmallCardBox = props => {
-	// let doneTask = 0;
+const SmallCardBox = () => {
+	const dataCtx = useContext(DataContext);
 
-	// const taskCtx = useContext(TaskContext);
+	const cards = dataCtx.categories.map(cat => (
+		<div key={cat.key} className={styles.carouselItem}>
+			<CategoryCardSmall
+				key={cat.key}
+				bgc={cat.color}
+				icon={cat.icon}
+				title={cat.id}
+				allTasksCounter={cat.allTasks}
+				tasksDoneCounter={cat.tasksDone}
+				tasks={cat.tasks}
+			/>
+		</div>
+	));
+
+	const carouselToLeft = () => {
+		let newVal = dataCtx.translateValue - 1;
+
+		if (newVal >= 0) {
+			dataCtx.setTranslateValue(newVal);
+		} else {
+			dataCtx.setTranslateValue(dataCtx.categories.length - 1);
+		}
+	};
+
+	const carouselToRight = () => {
+		let newVal = dataCtx.translateValue + 1;
+
+		if (newVal < dataCtx.categories.length) {
+			dataCtx.setTranslateValue(newVal);
+		} else {
+			dataCtx.setTranslateValue(0);
+		}
+	};
 
 	return (
 		<div className={styles.smallCardContainer}>
-			<div id='carousel-indicators' className={styles.carousel}>
-				<div className={styles.carouselCards}>
-                    <div className={styles.carouselItem}>
-                        <CategoryCardSmall onClick={props.onClick} />
-                    </div>
-                </div>
-				<a
-					className='carousel-control-prev'
-					href='#carouselExampleIndicators'
-					role='button'
-					data-slide='prev'>
-					<span
-						className='carousel-control-prev-icon'
-						aria-hidden='true'></span>
-				</a>
-				<a
-					className='carousel-control-next'
-					href='#carouselExampleIndicators'
-					role='button'
-					data-slide='next'>
-					<span
-						className='carousel-control-next-icon'
-						aria-hidden='true'></span>
-				</a>
-				<ol className={styles.indicators}>
-					<li className={styles.indicator}></li>
-					<li className={styles.indicator}></li>
-					<li className={styles.indicator}></li>
-					<li className={styles.indicator}></li>
-					<li className={styles.indicator}></li>
-				</ol>
+			<div className={styles.carouselBox}>
+				<div className={styles.carousel}>
+					<div
+						className={styles.carouselCards}
+						style={{ transform: `translateX(-${dataCtx.translateValue}00%)` }}>
+						{cards}
+					</div>
+				</div>
+				<button className={styles.arrowBtnLeft} onClick={carouselToLeft}>
+					<FaAngleLeft />
+				</button>
+				<button className={styles.arrowBtnRight} onClick={carouselToRight}>
+					<FaAngleRight />
+				</button>
 			</div>
 			<div className={styles.btnBox}>
-				<button className={styles.addCategoryBtn}>
-					<FontAwesomeIcon icon={fas('plus')} />
-				</button>
+				<AddNewTaskBtn cssStyle={styles.addTaskBtn} />
 			</div>
 		</div>
 	);
 };
 
 export default SmallCardBox;
-
-// {taskCtx.categories.map(item => {
-//     doneTask = 0;
-
-//     item.tasks.forEach(task => {
-//         if (task.isDone) {
-//             doneTask++;
-//         }
-//     });
-
-//     return (
-//         <CategoryCardSmall
-//             key={item.id}
-//             id={item.id}
-//             icon={item.icon}
-//             title={item.id}
-//             doneTasks={doneTask}
-//             allTasks={item.tasks.length}
-//             background={item.color}
-//             onClick={showBigCardHandler}
-//         />
-//     );
-// })}

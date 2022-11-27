@@ -1,42 +1,42 @@
 .tile {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1.2rem;
-    margin: 0.5rem;
-	width: 140px;
-	height: 140px;
-    text-decoration: none;
-    color: white;
-    border: none;
-    box-shadow: 2px 2px 5px gray;
-    cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 1.2rem;
+	margin: 0.5rem;
+	width: 14rem;
+	height: 14rem;
+	text-decoration: none;
+	color: white;
+	border: none;
+	box-shadow: 2px 2px 5px gray;
+	cursor: pointer;
 }
 
 .titleBox {
-    text-align: left;
-    width: 100%;
+	text-align: left;
+	width: 100%;
 }
 
 .emoji {
-    font-size: 2.2rem;
-    margin-bottom: 0.3rem;
+	font-size: 2.2rem;
+	margin-bottom: 0.3rem;
 }
 
 .title {
-    font-size: 2rem;
-    font-weight: normal;
+	font-size: 2rem;
+	font-weight: normal;
 }
 
 .counterBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
 }
 
 .counter {
-    font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 .circleBox {
@@ -44,6 +44,11 @@
 	height: 30px;
 }
 
+.svgCircle {
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
 .circleBackground {
-    opacity: .4;
+	opacity: 0.4;
 }

@@ -1,16 +1,17 @@
 import SearchBar from './SearchBar';
-import Wrapper from './Wrapper';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fas } from 'fontawesome.macro';
+import { FaSquareFull } from 'react-icons/fa';
 
 import styles from './UserGreeting.module.css';
 
 const UserGreeting = props => {
+
+	const nameBig = props.user.charAt(0).toUpperCase() + props.user.slice(1)
+	
 	return (
-		<Wrapper>
+		<>
 			<SearchBar />
-			<h2 className={styles.greetingsTitle}>Hello {props.user}</h2>
+			<h2 className={styles.greetingsTitle}>Hello {nameBig}</h2>
 			<div className={styles.greetingsBox}>
 				{props.taskCount > 1 && <p className={styles.greetingsText}>
 					<span className={styles.countHighlight}>{props.taskCount} tasks</span>{' '}
@@ -35,30 +36,25 @@ const UserGreeting = props => {
 									? `${styles.squareBox} ${styles.icon} ${styles.iconActive}`
 									: `${styles.squareBox} ${styles.icon}`
 							}>
-							<FontAwesomeIcon
-								icon={fas('square-full')}
-								className={styles.tilesIcon}
-							/>
-							<FontAwesomeIcon
-								icon={fas('square-full')}
-								className={styles.tilesIcon}
-							/>
-							<FontAwesomeIcon
-								icon={fas('square-full')}
-								className={styles.tilesIcon}
-							/>
-							<FontAwesomeIcon
-								icon={fas('square-full')}
-								className={styles.tilesIcon}
-							/>
+							<FaSquareFull
+									className={styles.tilesIcon}
+								/>
+							<FaSquareFull
+									className={styles.tilesIcon}
+								/>
+							<FaSquareFull
+									className={styles.tilesIcon}
+								/>
+							<FaSquareFull
+									className={styles.tilesIcon}
+								/>
 						</div>
 					</button>
 					<button
 						id='squareButton'
 						className={styles.iconButton}
 						onClick={props.activateIconHandler}>
-						<FontAwesomeIcon
-							icon={fas('square-full')}
+						<FaSquareFull
 							className={
 								props.activeIcon === 'squareButton'
 									? `${styles.icon} ${styles.iconActive}`
@@ -68,7 +64,7 @@ const UserGreeting = props => {
 					</button>
 				</div>
 			</div>
-		</Wrapper>
+		</>
 	);
 };
 

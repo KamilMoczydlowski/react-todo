@@ -1,0 +1,20 @@
+.btnsBox {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 2rem;
+	width: 100%;
+}
+
+.btn {
+	width: 6rem;
+	height: 3rem;
+	background: none;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+.btnDelete {
+    color: white;
+	background-color: #fe531d;
+}

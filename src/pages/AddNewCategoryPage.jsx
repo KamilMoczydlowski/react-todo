@@ -1,7 +1,7 @@
-// import  from '../components/';
+import AddNewCategory from '../components/AddNewCategory';
 
 const AddNewCategoryPage = () => {
-	return <div><p>work in progress...</p></div>
+	return <AddNewCategory />
 };
 
 export default AddNewCategoryPage;

@@ -1,0 +1,71 @@
+.carouselBox {
+	position: relative;
+	width: 90%;
+	max-width: 35rem;
+	margin: 0 auto;
+}
+
+.carousel {
+	position: relative;
+	height: 34rem;
+	width: 20rem;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.carouselCards {
+	display: flex;
+	transition: transform 0.5s;
+}
+
+.carouselItem {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.arrowBtnLeft,
+.arrowBtnRight {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: 50%;
+	transform: translateY(-50%);
+	height: 3rem;
+	width: 3rem;
+	color: #fff;
+	background: #fe531d;
+	border: none;
+	cursor: pointer;
+}
+
+.arrowBtnLeft {
+	left: 0rem;
+}
+
+.arrowBtnRight {
+	right: 0rem;
+}
+
+.btnBox {
+	margin-bottom: 2rem;
+	width: 100%;
+}
+
+.addTaskBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	height: 4rem;
+	width: 90%;
+	max-width: 26rem;
+	font-size: 1.4rem;
+	font-weight: bold;
+	color: #fff;
+	background-color: #fe531d;
+	border: none;
+	cursor: pointer;
+}

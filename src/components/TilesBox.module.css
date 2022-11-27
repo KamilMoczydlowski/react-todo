@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	margin-top: 1rem;
+	width: 100%;
 }
 
 .addTaskLink {
@@ -10,11 +10,12 @@
 	justify-content: center;
 	align-items: center;
 	margin: 0.5rem;
-	width: 140px;
-	height: 140px;
+	width: 14rem;
+	height: 14rem;
 	font-size: 3rem;
 	color: white;
 	background-color: #fe531d;
+	box-shadow: 2px 2px 5px gray;
 	border: none;
 	cursor: pointer;
 }

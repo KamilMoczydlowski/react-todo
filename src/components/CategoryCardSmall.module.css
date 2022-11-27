@@ -1,7 +1,53 @@
 .smallCard {
+	width: 20rem;
+	height: 30rem;
+	color: white;
+}
 
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 1.1rem 1.5rem;
+	height: 100%;
 }
 
 .header {
-    
+	min-height: 30%;
+}
+
+.icon {
+	font-size: 3rem;
+}
+
+.title {
+	margin: 1rem 0 0.5rem;
+	font-size: 2.2rem;
+}
+
+.titleLink {
+	color: white;
+	text-decoration: none;
+}
+
+.taskCounter {
+	font-size: 1.1rem;
+}
+
+.listBox {
+	font-size: 1.3rem;
+}
+
+.loadingBarBox {
+	height: 3rem;
+	width: 100%;
+}
+
+.percentageInfo {
+	margin-bottom: 0.2rem;
+	font-size: 1.2rem;
+}
+
+.barBgc {
+	opacity: 0.4;
 }

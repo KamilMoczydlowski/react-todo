@@ -1,26 +1,70 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useContext } from 'react';
 
-import TaskProvider from './store/TaskProvider';
+import { Route, Navigate, BrowserRouter, Routes } from 'react-router-dom';
 
-// import WelcomePage, {loader as WelcomeLoader} from './pages/WelcomePage';
+import WelcomePage from './pages/WelcomePage';
 
 import MainPage from './pages/MainPage';
 import AddNewTaskPage from './pages/AddNewTaskPage';
 import AddNewCategoryPage from './pages/AddNewCategoryPage';
 import CategoryBigCardPage from './pages/CategoryBigCardPage';
-
-const router = createBrowserRouter([
-	{ path: '/', element: <MainPage /> },
-	{ path: '/bigCard', element: <CategoryBigCardPage /> },
-	{ path: '/addNewTask', element: <AddNewTaskPage /> },
-	{ path: '/addNewCategory', element: <AddNewCategoryPage /> },
-]);
+import AuthContext from './store/auth-context';
 
 function App() {
+	const authCtx = useContext(AuthContext);
+
 	return (
-		<TaskProvider>
-			<RouterProvider router={router} />
-		</TaskProvider>
+		<BrowserRouter>
+			<Routes>
+				<Route
+					path='/auth'
+					element={
+						authCtx.isLoggedIn ? (
+							<Navigate replace to='/main' />
+						) : (
+							<WelcomePage />
+						)
+					}
+				/>
+				<Route
+					path='/main'
+					element={
+						authCtx.isLoggedIn ? <MainPage /> : <Navigate replace to='/auth' />
+					}
+				/>
+				<Route
+					path='/main/:id'
+					element={
+						authCtx.isLoggedIn ? (
+							<CategoryBigCardPage />
+						) : (
+							<Navigate replace to='/auth' />
+						)
+					}
+				/>
+				<Route
+					path='/addNewTask'
+					element={
+						authCtx.isLoggedIn ? (
+							<AddNewTaskPage />
+						) : (
+							<Navigate replace to='/auth' />
+						)
+					}
+				/>
+				<Route
+					path='/addNewCategory'
+					element={
+						authCtx.isLoggedIn ? (
+							<AddNewCategoryPage />
+						) : (
+							<Navigate replace to='/auth' />
+						)
+					}
+				/>
+				<Route path='/*' element={<Navigate replace to='/auth' />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }
 

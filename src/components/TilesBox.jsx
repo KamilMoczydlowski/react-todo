@@ -1,44 +1,24 @@
-import { Link } from 'react-router-dom';
-
-import { useEffect, useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import CategoryTile from './CategoryTile';
+import AddNewTaskBtn from './AddNewTaskBtn';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fas } from 'fontawesome.macro';
+import DataContext from '../store/data-context';
 
 import styles from './TilesBox.module.css';
-import { useContext } from 'react';
-import TaskContext from '../store/task-context';
 
-const TilesBox = props => {
-	const [categories, setCategories] = useState([]);
+const TilesBox = () => {
+	const [categoryTilesList, setCategoryTilesList] = useState([]);
 
-	const categoriesCtx = useContext(TaskContext);
+	const categoriesCtx = useContext(DataContext);
 
 	useEffect(() => {
-		const loadedCategories = [];
+		let list = [];
 
-		for (const key in categoriesCtx.categories) {
-			loadedCategories.push({
-				key: key,
-				id: categoriesCtx.categories[key].id,
-				title: categoriesCtx.categories[key].id,
-				color: categoriesCtx.categories[key].color,
-				icon: categoriesCtx.categories[key].icon,
-				tasksDone: categoriesCtx.categories[key].tasksDone,
-				allTasks: categoriesCtx.categories[key].allTasks,
-			});
-		}
-
-		setCategories(loadedCategories);
-	}, [categoriesCtx.categories]);
-
-	return (
-		<div className={styles.tilesBox}>
-			{categories.map(category => (
+		categoriesCtx.categories.forEach(category => {
+			list.push(
 				<CategoryTile
-					key={category.key}
+					key={category.id}
 					id={category.id}
 					icon={category.icon}
 					title={category.id}
@@ -46,11 +26,20 @@ const TilesBox = props => {
 					allTasks={category.allTasks}
 					background={category.color}
 				/>
-			))}
-			<Link to='/addNewTask' className={styles.addTaskLink}>
-				<FontAwesomeIcon icon={fas('plus')} />
-			</Link>
-		</div>
+			);
+		});
+
+		setCategoryTilesList(list);
+
+	}, [categoriesCtx.categories]);
+
+	return (
+		<>
+			<div className={styles.tilesBox}>
+				{categoryTilesList}
+				<AddNewTaskBtn cssStyle={styles.addTaskLink} />
+			</div>
+		</>
 	);
 };
 
