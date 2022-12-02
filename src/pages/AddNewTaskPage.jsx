@@ -1,4 +1,4 @@
-import AddNewTask from '../components/AddNewTask';
+import AddNewTask from '../components/addTask/AddNewTask';
 
 const AddNewTaskPage = () => {
 	return <AddNewTask />;

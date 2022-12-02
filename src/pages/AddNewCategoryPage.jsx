@@ -1,4 +1,4 @@
-import AddNewCategory from '../components/AddNewCategory';
+import AddNewCategory from '../components/addCategory/AddNewCategory';
 
 const AddNewCategoryPage = () => {
 	return <AddNewCategory />

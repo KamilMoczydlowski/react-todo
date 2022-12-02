@@ -1,0 +1,43 @@
+.input {
+	margin: 1rem auto 0;
+	padding: 0.4rem;
+	max-width: 25rem;
+	font-size: 1.5rem;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+.inputError {
+    border-bottom: 1px solid red;
+}
+
+.errorBox {
+	margin-top: 1rem;
+}
+
+.errorMsg {
+	font-size: 1.2rem;
+	text-align: center;
+	color: red;
+}
+
+.btnsBox {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 2rem;
+	width: 100%;
+}
+
+.btn {
+	width: 6rem;
+	height: 3rem;
+	background: none;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+.btnAccept {
+	color: white;
+	background-color: #fe531d;
+}

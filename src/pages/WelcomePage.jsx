@@ -1,4 +1,4 @@
-import WelcomeContent from '../components/WelcomeContent'
+import WelcomeContent from '../components/auth/WelcomeContent'
 
 const WelcomePage = () => {
     return (<WelcomeContent />)
