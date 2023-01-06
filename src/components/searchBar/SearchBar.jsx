@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 import SearchListItem from './SearchListItem';
 import MenuBox from '../ui/MenuBox';
@@ -7,7 +7,7 @@ import { GoSearch, GoGear } from 'react-icons/go';
 
 import styles from './SearchBar.module.css';
 
-const SearchBar = (props) => {
+const SearchBar = props => {
 	const [isInputActive, setIsInputActive] = useState(false);
 	const [showMenu, setShowMenu] = useState(false);
 
@@ -17,7 +17,7 @@ const SearchBar = (props) => {
 
 	const filteredItems = props.tasks.filter(task => {
 		return task.text.toLowerCase().includes(query.toLowerCase());
-	})
+	});
 
 	const showInputHandler = e => {
 		if (!isInputActive) {
@@ -97,9 +97,7 @@ const SearchBar = (props) => {
 					}
 				/>
 			</div>
-			{query && <div className={styles.itemsList}>
-				{items}
-			</div>}
+			{query && <div className={styles.itemsList}>{items}</div>}
 			<MenuBox show={showMenu} closed={!showMenu} showMenu={setShowMenu} />
 		</div>
 	);

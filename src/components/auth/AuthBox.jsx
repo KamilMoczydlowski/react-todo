@@ -91,7 +91,7 @@ const AuthBox = () => {
 
 		setIsLoading(true);
 
-		const API_KEY = 'AIzaSyD2eU8Z96tVrm3BxGmQ0cMugDzhjB_LUBU';
+		const API_KEY = 'AIzaSyBR4n4A4OZARr3zrZBxHx3WDqREGVNh5CA'; // need to be deleted
 
 		let url;
 

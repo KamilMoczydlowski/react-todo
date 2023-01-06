@@ -2,6 +2,10 @@ import { useContext, useState, useRef, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { collection, query, onSnapshot, doc } from 'firebase/firestore';
+
+import { db } from '../../firebase';
+
 import DataContext from '../../store/data-context';
 
 import useHttp from '../../hooks/useHttp';
@@ -49,20 +53,44 @@ const AddNewCategory = () => {
 	const inputRef = useRef();
 
 	useEffect(() => {
-		const transformData = obj => {
-			const iconArr = Object.entries(obj)[0][1];
-			const colorArr = Object.entries(obj)[1][1];
+		const q1 = query(collection(db, 'colors'));
+		const q2 = query(collection(db, 'icons'));
 
-			setFetchedIcons(iconArr);
-			setFetchedColors(colorArr);
+		const unsub1 = onSnapshot(q1, querySnapshot => {
+			let colorsArr = [];
+			querySnapshot.forEach(doc => {
+				colorsArr.push({ ...doc.data(), id: doc.id });
+			});
+			setFetchedColors(colorsArr);
+		});
+		const unsub2 = onSnapshot(q2, querySnapshot => {
+			let iconsArr = [];
+			querySnapshot.forEach(doc => {
+				iconsArr.push({ ...doc.data(), id: doc.id });
+			});
+			setFetchedIcons(iconsArr);
+		});
+		return () => {
+			unsub1();
+			unsub2();
 		};
-		getData(
-			{
-				url: 'https://react-todo-97328-default-rtdb.europe-west1.firebasedatabase.app/.json',
-			},
-			transformData
-		);
-	}, [getData]);
+	}, []);
+
+	// useEffect(() => {
+	// 	const transformData = obj => {
+	// 		const iconArr = Object.entries(obj)[0][1];
+	// 		const colorArr = Object.entries(obj)[1][1];
+
+	// 		setFetchedIcons(iconArr);
+	// 		setFetchedColors(colorArr);
+	// 	};
+	// 	getData(
+	// 		{
+	// 			url: 'https://react-todo-97328-default-rtdb.europe-west1.firebasedatabase.app/.json',
+	// 		},
+	// 		transformData
+	// 	);
+	// }, [getData]);
 
 	// const colorArr = [
 	// 	{ key: '#4BB1F8', color: '#4BB1F8' },
@@ -154,7 +182,7 @@ const AddNewCategory = () => {
 							<div className={styles.colorBox}>
 								{fetchedColors.map(item => (
 									<ColorCategoryItem
-										key={item.key}
+										key={item.id}
 										id={item.key}
 										background={item.color}
 										onClick={activeColorHandler}
@@ -167,7 +195,7 @@ const AddNewCategory = () => {
 							<div className={styles.iconBox}>
 								{fetchedIcons.map(item => (
 									<IconCategoryItem
-										key={item.key}
+										key={item.id}
 										id={item.icon}
 										onClick={activeIconHandler}
 									/>

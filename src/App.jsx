@@ -1,11 +1,6 @@
 import { useContext } from 'react';
 
-import {
-	Route,
-	Navigate,
-	BrowserRouter,
-	Routes,
-} from 'react-router-dom';
+import { Route, Navigate, BrowserRouter, Routes } from 'react-router-dom';
 
 import WelcomePage from './pages/WelcomePage';
 
@@ -13,6 +8,7 @@ import MainPage from './pages/MainPage';
 import AddNewTaskPage from './pages/AddNewTaskPage';
 import AddNewCategoryPage from './pages/AddNewCategoryPage';
 import CategoryBigCardPage from './pages/CategoryBigCardPage';
+import AddColorsAndIconsPage from './pages/AddColorsAndIconsPage';
 
 import AuthContext from './store/auth-context';
 
@@ -68,6 +64,7 @@ function App() {
 						)
 					}
 				/>
+				<Route path='/addColorsAndIcons' element={<AddColorsAndIconsPage />} />
 				<Route path='/*' element={<Navigate replace to='/auth' />} />
 			</Routes>
 		</BrowserRouter>

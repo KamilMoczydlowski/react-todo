@@ -16,7 +16,6 @@ import { activeHandler } from '../addCategory/AddNewCategory';
 const AddNewTask = props => {
 	const [activeCategoryButton, setActiveCategoryButton] = useState();
 	const [inputValue, setInputValue] = useState()
-	const [errorMsg, setErrorMsg] = useState('');
 
 	const dataCtx = useContext(DataContext);
 
@@ -26,6 +25,8 @@ const AddNewTask = props => {
 	const navigate = useNavigate();
 
 	const inputRef = useRef();
+
+	const [errorMsg, setErrorMsg] = useState('');
 
 	const activeButtonHandler = e => {
 		activeHandler(
