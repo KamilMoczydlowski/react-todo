@@ -40,10 +40,10 @@ const AddNewCategory = () => {
 	const [activeIconBtn, setActiveIconBtn] = useState();
 	const [errorMsg, setErrorMsg] = useState('');
 	const [inputValue, setInputValue] = useState();
-	const [fetchedIcons, setFetchedIcons] = useFirebase('icons', []);
-	const [fetchedColors, setFetchedColors] = useFirebase('colors', []);
-	// const [fetchedIcons, setFetchedIcons] = useState([]);
-	// const [fetchedColors, setFetchedColors] = useState([]);
+	// const [fetchedIcons, setFetchedIcons] = useFirebase('icons', []);
+	// const [fetchedColors, setFetchedColors] = useFirebase('colors', []);
+	const [fetchedIcons, setFetchedIcons] = useState([]);
+	const [fetchedColors, setFetchedColors] = useState([]);
 
 	// console.log(useFirebase('icons')[0]);
 
@@ -56,6 +56,9 @@ const AddNewCategory = () => {
 	const createCategory = dataCtx.createCategory;
 
 	const inputRef = useRef();
+
+	useFirebase('icons', setFetchedIcons)
+	useFirebase('colors', setFetchedColors)
 
 	// useEffect(() => {
 	// 	const q1 = query(collection(db, 'colors'));
