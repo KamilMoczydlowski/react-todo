@@ -19,6 +19,7 @@ import SubmitBtnWithError from '../ui/btns/SubmitBtnWithError';
 import styles from './AddNewCategory.module.css';
 import colorStyles from './ColorCategoryItem.module.css';
 import iconStyles from './IconCategoryItem.module.css';
+import { useFirebase } from '../../hooks/useFirebase';
 
 export const activeHandler = (e, state, setState, classActive) => {
 	if (state) {
@@ -39,8 +40,12 @@ const AddNewCategory = () => {
 	const [activeIconBtn, setActiveIconBtn] = useState();
 	const [errorMsg, setErrorMsg] = useState('');
 	const [inputValue, setInputValue] = useState();
-	const [fetchedIcons, setFetchedIcons] = useState([]);
-	const [fetchedColors, setFetchedColors] = useState([]);
+	const [fetchedIcons, setFetchedIcons] = useFirebase('icons', []);
+	const [fetchedColors, setFetchedColors] = useFirebase('colors', []);
+	// const [fetchedIcons, setFetchedIcons] = useState([]);
+	// const [fetchedColors, setFetchedColors] = useState([]);
+
+	// console.log(useFirebase('icons')[0]);
 
 	const getData = useHttp();
 
@@ -52,29 +57,29 @@ const AddNewCategory = () => {
 
 	const inputRef = useRef();
 
-	useEffect(() => {
-		const q1 = query(collection(db, 'colors'));
-		const q2 = query(collection(db, 'icons'));
+	// useEffect(() => {
+	// 	const q1 = query(collection(db, 'colors'));
+	// 	const q2 = query(collection(db, 'icons'));
 
-		const unsub1 = onSnapshot(q1, querySnapshot => {
-			let colorsArr = [];
-			querySnapshot.forEach(doc => {
-				colorsArr.push({ ...doc.data(), id: doc.id });
-			});
-			setFetchedColors(colorsArr);
-		});
-		const unsub2 = onSnapshot(q2, querySnapshot => {
-			let iconsArr = [];
-			querySnapshot.forEach(doc => {
-				iconsArr.push({ ...doc.data(), id: doc.id });
-			});
-			setFetchedIcons(iconsArr);
-		});
-		return () => {
-			unsub1();
-			unsub2();
-		};
-	}, []);
+	// 	const unsub1 = onSnapshot(q1, querySnapshot => {
+	// 		let colorsArr = [];
+	// 		querySnapshot.forEach(doc => {
+	// 			colorsArr.push({ ...doc.data(), id: doc.id });
+	// 		});
+	// 		setFetchedColors(colorsArr);
+	// 	});
+	// 	const unsub2 = onSnapshot(q2, querySnapshot => {
+	// 		let iconsArr = [];
+	// 		querySnapshot.forEach(doc => {
+	// 			iconsArr.push({ ...doc.data(), id: doc.id });
+	// 		});
+	// 		setFetchedIcons(iconsArr);
+	// 	});
+	// 	return () => {
+	// 		unsub1();
+	// 		unsub2();
+	// 	};
+	// }, []);
 
 	// useEffect(() => {
 	// 	const transformData = obj => {
