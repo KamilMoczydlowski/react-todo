@@ -45,7 +45,7 @@ const SearchBar = props => {
 			return (
 				<SearchListItem
 					key={item.id}
-					category={item.category}
+					category={item.toCategory}
 					text={item.text}
 					color={'#999'}
 					done={item.isDone}
@@ -55,7 +55,7 @@ const SearchBar = props => {
 			return (
 				<SearchListItem
 					key={item.id}
-					category={item.category}
+					category={item.toCategory}
 					text={item.text}
 					color={'#000'}
 				/>

@@ -37,13 +37,7 @@ const CategoryCardBig = props => {
 	tasksAllArr.forEach(task => {
 		if (task.isDone) {
 			tasksDoneArr.push(task);
-		} else {
-			return null;
-		}
-	});
-
-	tasksAllArr.forEach(task => {
-		if (!task.isDone) {
+		} else if (!task.isDone) {
 			tasksUndoneArr.push(task);
 		} else {
 			return null;

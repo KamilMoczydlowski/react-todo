@@ -1,18 +1,22 @@
 import { useState, useMemo } from 'react';
 
+import { db } from '../firebase';
+import { collection, addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+
 import DataContext from './data-context';
 
-import { useLocalStorage } from '../hooks/useLocalStorage';
-
-import { v4 as uuidV4 } from 'uuid';
+import { useFirebase } from '../hooks/useFirebase';
 
 const DataProvider = props => {
 	const [activeIcon, setActiveIcon] = useState('tilesButton'); // 'tilesButton' or 'squareButton' set from 'MainContent.jsx'
 	const [translateValue, setTranslateValue] = useState(0); // set from 'SmallCardBox.jsx'
 	const [isDark, setIsDark] = useState(false); // set from 'MenuBox.jsx'
 
-	const [categories, setCategories] = useLocalStorage('CATEGORIES', []);
-	const [tasks, setTasks] = useLocalStorage('TASKS', []);
+	const [categories, setCategories] = useState([]);
+	const [tasks, setTasks] = useState([]);
+
+	useFirebase('categories', setCategories);
+	useFirebase('tasks', setTasks);
 
 	const categoriesWithTasks = useMemo(() => {
 		return categories.map(category => {
@@ -25,45 +29,35 @@ const DataProvider = props => {
 		});
 	}, [categories, tasks]);
 
-	const createCategory = ({ ...data }) => {
-		setCategories(prevCategories => {
-			return [...prevCategories, { ...data, id: uuidV4() }];
+	const createCategory = async ({ ...data }) => {
+		await addDoc(collection(db, 'categories'), {
+			...data,
 		});
 	};
 
-	const createTask = ({ ...data }) => {
-		setTasks(prevTasks => {
-			return [...prevTasks, { ...data, id: uuidV4() }];
+	const createTask = async ({ ...data }) => {
+		await addDoc(collection(db, 'tasks'), {
+			...data,
 		});
 	};
 
-	const editTask = (id, { ...data }) => {
-		setTasks(prevTasks => {
-			return prevTasks.map(task => {
-				if (task.id === id) {
-					return { ...task, ...data };
-				} else {
-					return task;
-				}
-			});
-		});
+	const editTask = async (id, { ...data }) => {
+		await updateDoc(doc(db, 'tasks', id), { ...data })
 	};
 
-	const deleteTask = (id) => {
-		setTasks(prevTasks => {
-			return prevTasks.filter( task => task.id !== id )
-		})
-	}
+	const deleteTask = async id => {
+		await deleteDoc(doc(db, 'tasks', id))
+	};
 
-	const deleteCategory = id => {
-		setCategories(prevCategories => {
-			return prevCategories.filter(category => category.id !== id)
-		})
+	const deleteCategory = async id => {
+		await deleteDoc(doc(db, 'categories', id))
 
-		setTasks(prevTasks => {
-			return prevTasks.filter( task => task.toCategory !== id )
+		tasks.forEach(task => {
+			if (task.toCategory === id) {
+				deleteTask(task.id)
+			}
 		})
-	}
+	};
 
 	const calcAllTasksInCategory = tasks => {
 		let counter = 0;

@@ -1,14 +1,10 @@
-import { useContext, useState, useRef, useEffect } from 'react';
+import { useContext, useState, useRef } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { collection, query, onSnapshot, doc } from 'firebase/firestore';
-
-import { db } from '../../firebase';
-
 import DataContext from '../../store/data-context';
 
-import useHttp from '../../hooks/useHttp';
+// import useHttp from '../../hooks/useHttp';
 
 import Wrapper from '../layout/Wrapper';
 import ColorCategoryItem from './ColorCategoryItem';
@@ -40,14 +36,10 @@ const AddNewCategory = () => {
 	const [activeIconBtn, setActiveIconBtn] = useState();
 	const [errorMsg, setErrorMsg] = useState('');
 	const [inputValue, setInputValue] = useState();
-	// const [fetchedIcons, setFetchedIcons] = useFirebase('icons', []);
-	// const [fetchedColors, setFetchedColors] = useFirebase('colors', []);
 	const [fetchedIcons, setFetchedIcons] = useState([]);
 	const [fetchedColors, setFetchedColors] = useState([]);
 
-	// console.log(useFirebase('icons')[0]);
-
-	const getData = useHttp();
+	// const getData = useHttp();
 
 	const navigate = useNavigate();
 
@@ -59,30 +51,6 @@ const AddNewCategory = () => {
 
 	useFirebase('icons', setFetchedIcons)
 	useFirebase('colors', setFetchedColors)
-
-	// useEffect(() => {
-	// 	const q1 = query(collection(db, 'colors'));
-	// 	const q2 = query(collection(db, 'icons'));
-
-	// 	const unsub1 = onSnapshot(q1, querySnapshot => {
-	// 		let colorsArr = [];
-	// 		querySnapshot.forEach(doc => {
-	// 			colorsArr.push({ ...doc.data(), id: doc.id });
-	// 		});
-	// 		setFetchedColors(colorsArr);
-	// 	});
-	// 	const unsub2 = onSnapshot(q2, querySnapshot => {
-	// 		let iconsArr = [];
-	// 		querySnapshot.forEach(doc => {
-	// 			iconsArr.push({ ...doc.data(), id: doc.id });
-	// 		});
-	// 		setFetchedIcons(iconsArr);
-	// 	});
-	// 	return () => {
-	// 		unsub1();
-	// 		unsub2();
-	// 	};
-	// }, []);
 
 	// useEffect(() => {
 	// 	const transformData = obj => {
@@ -191,7 +159,7 @@ const AddNewCategory = () => {
 								{fetchedColors.map(item => (
 									<ColorCategoryItem
 										key={item.id}
-										id={item.key}
+										id={item.color}
 										background={item.color}
 										onClick={activeColorHandler}
 									/>

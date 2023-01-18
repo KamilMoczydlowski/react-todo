@@ -17,7 +17,7 @@ const SearchListItem = props => {
 
 	return (
 		<Link
-			to={`/main/${props.id}`}
+			to={`/main/${props.category}`}
 			state={{ id: props.category }}
 			className={styles.listItem}
 			onClick={navData}>
