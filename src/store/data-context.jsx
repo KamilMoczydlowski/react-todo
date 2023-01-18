@@ -13,7 +13,7 @@ const DataContext = React.createContext({
 	createTask: () => {},
 	editTask: () => {},
 	deleteTask: () => {},
-	allTaskCounter: () => {},
+	allTaskToDoCounter: () => {},
 	tasks: [],
 	calcAllTasksInCategory: () => {},
 	calcDoneTasksinCategory: () => {}

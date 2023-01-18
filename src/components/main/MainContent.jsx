@@ -12,7 +12,7 @@ const MainContent = () => {
 
 	const categories = dataCtx.categoriesWithTasks;
 
-	let tasksToDo = dataCtx.allTaskCounter();
+	let tasksToDo = dataCtx.allTaskToDoCounter();
 
 	return (
 		<Wrapper>

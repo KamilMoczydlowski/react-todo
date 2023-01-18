@@ -1,7 +1,13 @@
 import { useState, useMemo } from 'react';
 
 import { db } from '../firebase';
-import { collection, addDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import {
+	collection,
+	addDoc,
+	doc,
+	deleteDoc,
+	updateDoc,
+} from 'firebase/firestore';
 
 import DataContext from './data-context';
 
@@ -42,21 +48,21 @@ const DataProvider = props => {
 	};
 
 	const editTask = async (id, { ...data }) => {
-		await updateDoc(doc(db, 'tasks', id), { ...data })
+		await updateDoc(doc(db, 'tasks', id), { ...data });
 	};
 
 	const deleteTask = async id => {
-		await deleteDoc(doc(db, 'tasks', id))
+		await deleteDoc(doc(db, 'tasks', id));
 	};
 
 	const deleteCategory = async id => {
-		await deleteDoc(doc(db, 'categories', id))
+		await deleteDoc(doc(db, 'categories', id));
 
 		tasks.forEach(task => {
 			if (task.toCategory === id) {
-				deleteTask(task.id)
+				deleteTask(task.id);
 			}
-		})
+		});
 	};
 
 	const calcAllTasksInCategory = tasks => {
@@ -83,10 +89,12 @@ const DataProvider = props => {
 		return counter;
 	};
 
-	const allTaskCounter = () => {
+	const allTaskToDoCounter = () => {
 		let counter = 0;
 		tasks.forEach(task => {
-			counter++;
+			if (!task.isDone) {
+				counter++;
+			}
 		});
 		return counter;
 	};
@@ -108,7 +116,7 @@ const DataProvider = props => {
 		createTask,
 		editTask,
 		deleteTask,
-		allTaskCounter,
+		allTaskToDoCounter,
 		tasks,
 		calcAllTasksInCategory,
 		calcDoneTasksinCategory,
