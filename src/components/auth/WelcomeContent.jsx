@@ -4,8 +4,6 @@ import AuthBox from './AuthBox';
 import styles from './WelcomeContent.module.css';
 
 const WelcomeContent = () => {
-	
-
 	return (
 		<div className={styles.bg}>
 			<Wrapper>

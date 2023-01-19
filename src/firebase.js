@@ -1,8 +1,9 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyBR4n4A4OZARr3zrZBxHx3WDqREGVNh5CA',
+	apiKey: process.env.REACT_APP_API_KEY,
 	authDomain: 'react-todo-1430c.firebaseapp.com',
 	projectId: 'react-todo-1430c',
 	storageBucket: 'react-todo-1430c.appspot.com',
@@ -12,5 +13,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-export { db };
+export { db, auth };

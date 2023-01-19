@@ -11,14 +11,6 @@ import ErrorPopup from '../ui/popups/ErrorPopup';
 import styles from './AuthBox.module.css';
 
 const AuthBox = () => {
-	// const {
-	// 	value: enteredEmail,
-	// 	isValid: emailIsValid,
-	// 	hasError: emailInputHasError,
-	// 	valueChangeHandler: emailChangedHandler,
-	// 	inputBlurHandler: emailBlurHandler,
-	// 	reset: resetEmailInput,
-	// } = useAuthInput(value => value.includes('@'));
 
 	const {
 		value: enteredEmail,
@@ -91,7 +83,7 @@ const AuthBox = () => {
 
 		setIsLoading(true);
 
-		const API_KEY = 'AIzaSyBR4n4A4OZARr3zrZBxHx3WDqREGVNh5CA'; // need to be deleted
+		const API_KEY = process.env.REACT_APP_API_KEY;
 
 		let url;
 
